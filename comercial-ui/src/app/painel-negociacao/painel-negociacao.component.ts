@@ -1,16 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { OportunidadeService } from '../oportunidade.service';
 import { MessageService } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { PanelModule } from 'primeng/panel';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+
+interface Oportunidade {
+  descricao?: string;
+  nomeProspecto?: string;
+  valor?: number;
+}
 
 @Component({
   selector: 'app-painel-negociacao',
   templateUrl: './painel-negociacao.component.html',
-  styleUrls: ['./painel-negociacao.component.css']
+  styleUrls: ['./painel-negociacao.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableModule,
+    PanelModule,
+    InputTextModule,
+    ButtonModule,
+    ToastModule
+  ],
+  providers: [MessageService]
 })
 export class PainelNegociacaoComponent implements OnInit {
 
-  oportunidade = {};
-  oportunidades = [];
+  oportunidade: Oportunidade = {};
+  oportunidades: Oportunidade[] = [];
 
   constructor(
     private oportunidadeService: OportunidadeService,
